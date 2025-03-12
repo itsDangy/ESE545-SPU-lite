@@ -16,10 +16,10 @@ module moduleName #(
     always_comb begin
         if (instruction[0:10] == 11'b01010110100) begin
             //Count Ones in Bytes - cntb (RR)
-            for (j = 0; j <= 15 ; j = j + 1 ) begin
+            for (int j = 0; j <= 15 ; j = j + 1 ) begin
                 c := 0;
                 b := RA_data_in[8*j:8*j+7];
-                for (m = 0; m <= 7 ; m = m + 1 ) begin
+                for (int m = 0; m <= 7 ; m = m + 1 ) begin
                     if (b[m] == 1'b1) begin
                         c = c + 1;
                     end
@@ -29,13 +29,13 @@ module moduleName #(
 
         end else if (instruction[0:10] == 11'b00011010011) begin
             //Average Bytes - avgb (RR)
-            for (j = 0; j <= 15 ; j = j + 1 ) begin
+            for (int j = 0; j <= 15 ; j = j + 1 ) begin
                 RT_data_out[8*j:8*j+7] = ({2'h00,RA_data_in[8*j:8*j+7]} + {2'h00,RB_data_in[8*j:8*j+7]} + 1'b1)[7:14];
             end
 
         end else if (instruction[0:10] == 11'b00001010011) begin
             //Absolute Differences of Bytes - absdb (RR)
-            for (j = 0; j <= 15 ; j = j + 1 ) begin
+            for (int j = 0; j <= 15 ; j = j + 1 ) begin
                 if ($unsigned(RB_data_in[8*j:8*j+7] > RA_data_in[8*j:8*j+7])) begin
                     RT_data_out[8*j:8*j+7] = RB_data_in[8*j:8*j+7] - RA_data_in[8*j:8*j+7];
                 end else begin

@@ -22,10 +22,10 @@ module Simple_Fixed_2 #(
             //Rotate Word Immediate - roti (RI7)
             s := {25{Immediate7[0]},Immediate7} & 32'h0000001F;
 
-            for (j = 0; j <= 15 ; j = j + 4 ) begin
+            for (int j = 0; j <= 15 ; j = j + 4 ) begin
                 t := RA_data_in[32*j:32*j+31];
 
-                for (b = 0; b <= 31 ; b = b + 1 ) begin
+                for (int b = 0; b <= 31 ; b = b + 1 ) begin
                     if (b + s < 32) begin
                         r[b] := t[b+s];
                     end else begin
@@ -38,11 +38,11 @@ module Simple_Fixed_2 #(
         end else if (instruction[4:7] == 4'b1011) begin
             if (instruction[8:10] == 3'b000) begin
                 //Rotate Word - rot (RR)
-                for (j = 0; j <= 15 ; j = j + 4 ) begin
+                for (int j = 0; j <= 15 ; j = j + 4 ) begin
                     s := RB_data_in[32*j:32*j+31] & 32'h0000001F;
                     t := RA_data_in[32*j:32*j+31];
 
-                    for (b = 0; b <= 31 ; b = b + 1 ) begin
+                    for (int b = 0; b <= 31 ; b = b + 1 ) begin
                         if (b + s < 32) begin
                             r[b] := t[b+s];
                         end else begin
@@ -54,11 +54,11 @@ module Simple_Fixed_2 #(
 
             end else if (instruction[8:10] == 3'b011) begin
                 //Shift Left Halfword - shl (RR)
-                for (j = 0; j <= 15 ; j = j + 4 ) begin
+                for (int j = 0; j <= 15 ; j = j + 4 ) begin
                     s := RB_data_in[32*j:32*j+31] & 32'h0000003F;
                     t := RA_data_in[32*j:32*j+31];
 
-                    for (b = 0; b <= 31 ; b = b + 1 ) begin
+                    for (int b = 0; b <= 31 ; b = b + 1 ) begin
                         if (b + s < 32) begin
                             r[b] := t[b+s];
                         end else begin
