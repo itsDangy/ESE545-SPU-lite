@@ -20,11 +20,10 @@ module register_file #(
         input [LOGSIZE-1:0] rc_odd_addr_in,
         input [LOGSIZE-1:0] rt_odd_addr_in,
         input wr_en_even, wr_en_odd,
-        input clk
     );
     logic [SIZE-1:0][WIDTH-1:0] mem;
 
-    always_ff @(posedge clk) begin
+    always_comb begin
         ra_even_data_out <= mem[ra_even_addr_in];
         rb_even_data_out <= mem[rb_even_addr_in];
         rc_even_data_out <= mem[rc_even_addr_in];
